@@ -1,0 +1,31 @@
+#
+# Programming Assignment 2
+# CS 5600, Spring 2024
+# Your Name
+# Date
+#
+
+CC = gcc
+INC = -I.
+FLAGS = -W -Wall -g
+
+all: simulator
+
+simulator:
+	$(CC) $(FLAGS) libscheduler/libscheduler.c simulator.c -o simulator
+
+#simulator: simulator.o
+#	$(CC) $^ -o $@
+#
+#simulator.o: simulator.c libscheduler/libscheduler.c
+#	$(CC) $^ -o $@
+#
+#libscheduler/libscheduler.o: libscheduler/libscheduler.c libscheduler/libscheduler.h
+#	$(CC) -c $(FLAGS) $(INC) $< -o $@
+#
+#simulator.o: simulator.c libscheduler/libscheduler.h
+#	$(CC) -c $(FLAGS) $(INC) $< -o $@
+
+.PHONY : clean
+clean:
+	-rm -f simulator *.o libscheduler/*.o
