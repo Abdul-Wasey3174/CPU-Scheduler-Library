@@ -1,5 +1,5 @@
 # CS5600_ClassRepo
-CS5600 Spring 2024 Class Repository
+CS5600 Spring 2026 Class Repository
 
 This repository is used for the CS5600 Computer Systems course at the Roux Institute in Portland, ME.
 
