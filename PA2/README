@@ -1,8 +1,7 @@
-Programming Assignment 2 - Process Scheduling
-CS 5600, Spring 2026
+Process Scheduling
 
 Author: Wasey
-Date:   February 18, 2026
+
 
 What this does:
   I built a scheduling library that works with a simulator to schedule
