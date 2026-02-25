@@ -1,0 +1,56 @@
+Programming Assignment 2 - Process Scheduling
+CS 5600, Spring 2026
+
+Author: Wasey
+Date:   February 18, 2026
+
+What this does:
+  I built a scheduling library that works with a simulator to schedule
+  CPU jobs. The simulator reads jobs from a CSV file and my library
+  decides which job gets the CPU next depending on the algorithm.
+
+Supported algorithms:
+  FCFS  - First Come First Served (simple queue, no preemption)
+  SJF   - Shortest Job First (picks the shortest job, no preemption)
+  PSJF  - Preemptive SJF (can kick out a running job if a shorter one arrives)
+  PRI   - Priority based (lower number = higher priority, no preemption)
+  PPRI  - Preemptive Priority (same as PRI but can preempt)
+  RR    - Round Robin (each job gets a fixed time slice then rotates)
+
+How to build:
+  make clean
+  make
+
+How to run:
+  ./simulator <scheme> <input_file>
+
+  Examples:
+    ./simulator fcfs examples/proc1.csv
+    ./simulator sjf  examples/proc2.csv
+    ./simulator rr2  examples/proc1.csv     <- round robin with quantum 2
+    ./simulator rr4  examples/proc2.csv     <- round robin with quantum 4
+
+Files:
+  simulator.c                  - the event simulator (given to us, didn't change it)
+  libscheduler/libscheduler.h  - header file with function prototypes
+  libscheduler/libscheduler.c  - where all my scheduling code lives
+  examples/                    - test inputs and expected outputs
+  Makefile                     - compiles everything
+  README                       - this file
+
+How it works:
+  I used a linked list for the ready queue. The list stays sorted based
+  on whatever algorithm we're using. When a new job comes in, it gets
+  inserted in the right spot. For non-preemptive algorithms (FCFS, SJF,
+  PRI), the running job always stays at the front. For preemptive ones
+  (PSJF, PPRI), a new job can take over if it has a shorter remaining
+  time or higher priority.
+
+  Round Robin is a bit different - new jobs go to the back, and when
+  the time quantum runs out the current job moves to the end of the line.
+
+  Ties are broken by arrival time (whoever showed up first goes first).
+
+  I also had to be careful with response time - if a job gets picked to
+  run but then immediately gets preempted before it actually executes,
+  that shouldn't count as its first run time.

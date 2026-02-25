@@ -1,8 +1,8 @@
 #
 # Programming Assignment 2
 # CS 5600, Spring 2026
-# Your Name
-# Date
+# Wasey
+# February 18, 2026
 #
 
 CC = gcc
